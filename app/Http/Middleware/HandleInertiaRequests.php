@@ -38,6 +38,8 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            // Placeholder until `feat/auth-scope` shares the real user.
+            'auth' => ['user' => null],
         ];
     }
 }
