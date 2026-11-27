@@ -1,7 +1,5 @@
 <?php
 
-test('home page renders', function () {
-    $this->get(route('home'))
-        ->assertOk()
-        ->assertInertia(fn ($page) => $page->component('welcome'));
+test('home redirects to ringkasan', function () {
+    $this->get(route('home'))->assertRedirect(route('ringkasan'));
 });
