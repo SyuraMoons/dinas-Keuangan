@@ -9,6 +9,8 @@ type Caption = {
     label: string;
     /** Raw amount; formatted with `formatRupiah`. */
     amount: number | string;
+    /** Put the label after the amount ("Rp20,06 M terealisasi"). */
+    labelAfter?: boolean;
 };
 
 type ProgressCardProps = {
@@ -25,13 +27,24 @@ type ProgressCardProps = {
     className?: string;
 };
 
-function CaptionText({ label, amount }: Caption) {
+function CaptionText({ label, amount, labelAfter }: Caption) {
+    const value = (
+        <span className="font-semibold text-foreground">
+            {formatRupiah(amount)}
+        </span>
+    );
+
     return (
         <span className="text-muted-foreground">
-            {label}{' '}
-            <span className="font-semibold text-foreground">
-                {formatRupiah(amount)}
-            </span>
+            {labelAfter ? (
+                <>
+                    {value} {label}
+                </>
+            ) : (
+                <>
+                    {label} {value}
+                </>
+            )}
         </span>
     );
 }
