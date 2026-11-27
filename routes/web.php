@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\DummyLoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/ringkasan')->name('home');
@@ -10,3 +11,7 @@ Route::inertia('/realisasi-anggaran', 'realisasi-anggaran/index')->name('realisa
 Route::inertia('/pajak-pbb', 'pajak-pbb/index')->name('pajak-pbb');
 Route::inertia('/aset-daerah', 'aset-daerah/index')->name('aset-daerah');
 Route::inertia('/admin/impor', 'admin/impor/index')->name('admin.impor');
+
+// TEMPORARY dummy login (see DummyLoginController); replaced by `feat/auth-scope`.
+Route::get('/login', [DummyLoginController::class, 'create'])->name('login');
+Route::post('/login', [DummyLoginController::class, 'store'])->name('login.store');
